@@ -1,0 +1,15 @@
+Options -Indexes
+DirectoryIndex index.php
+ErrorDocument 404 /404.php
+
+# Block direct access to PHP building blocks
+RewriteEngine On
+RewriteRule ^(includes|partials)/ - [F,L]
+
+# Cache static assets (filenames are versioned with ?v=)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+</IfModule>
