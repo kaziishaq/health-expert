@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "builds": [
+    {
+      "src": "*.php",
+      "use": "vercel-php@0.9.0",
+      "config": { "includeFiles": ["includes/**", "partials/**"] }
+    },
+    { "src": "assets/**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/(includes|partials)/.*", "status": 404, "dest": "/404.php" },
+    { "src": "/", "dest": "/index.php" },
+    { "handle": "filesystem" },
+    { "src": "/.*", "status": 404, "dest": "/404.php" }
+  ]
+}
